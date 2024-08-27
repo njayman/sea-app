@@ -1,0 +1,20 @@
+{
+  "name": "sea-app",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "build": "esbuild index.js --bundle --platform=node --outfile=webserver.js",
+    "serve": "node webserver.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "cors": "2.8.5",
+    "express": "4.19.2"
+  },
+  "devDependencies": {
+    "esbuild": "0.23.1"
+  }
+}
