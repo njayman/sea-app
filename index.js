@@ -1,15 +1,20 @@
-const express = require("express");
-const cors = require("cors");
+import { Hono } from "hono";
+import { serve } from "@hono/node-server";
+import { env } from "hono/adapter";
 
-const router = require("./router");
+const app = new Hono();
 
-const app = express();
+app
+  .get("/", (c) => {
+    return c.text("Hello world");
+  })
+  .post("/", (c) => {
+    const queries = JSON.stringify(c.req.query(), null, 2);
+    return c.text(queries);
+  });
 
-app.use(cors());
-app.use(express.json());
+const { PORT } = env();
 
-app.use("/", router);
+const port = parseInt(PORT) || 1337;
 
-const port = parseInt(process.env.PORT) || 1337;
-
-app.listen(port);
+serve({ fetch: app.fetch, port });

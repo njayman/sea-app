@@ -5,14 +5,19 @@
   "main": "index.js",
   "scripts": {
     "build": "esbuild index.js --bundle --platform=node --outfile=webserver.js",
+    "gen:blob": "node --experimental-sea-config sea-config.json",
+    "gen:runtime": "cp $(command -v node) server",
+    "build:inject": "npx postject server NODE_SEA_BLOB sea-prep.blob --sentinel-fuse NODE_SEA_FUSE_fce680ab2cc467b6e072b8b5df1996b2",
+    "build:exec": "npm run build && npm run gen:blob && npm run gen:runtime && npm run build:inject",
     "serve": "node webserver.js"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@hono/node-server": "^1.12.2",
     "cors": "2.8.5",
-    "express": "4.19.2"
+    "hono": "^4.5.9"
   },
   "devDependencies": {
     "esbuild": "0.23.1"

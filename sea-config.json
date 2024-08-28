@@ -1,4 +1,4 @@
 {
-  "main": "server.js",
+  "main": "webserver.js",
   "output": "sea-prep.blob"
 }
